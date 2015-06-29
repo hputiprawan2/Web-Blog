@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Font for head -->
+<link href='http://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
+
+<div id="add-post-block">
+<h2><b>Make a post!!</b></h2>
+  <form action="{{ url_for('PostsFiles.addPost') }}" method="post" role="form">
+    {{ form.csrf_token }}
+
+    <div id="post-left"> <b>Post Type: </b> </div>
+    <div id="post-right"> <b>Post Title: </b> </div> 
+  
+  <p>
+    <div id="post-left">{{ form.post_type(placeholder="Type")}}
+          <span class="error"><font color="red"><i>
+        {% if form.post_type.errors %}
+          {% for error in form.post_type.errors %}
+            {{ error }}
+          {% endfor %}
+        {% endif %}
+      </span></i></font>
+    </div>  
+    <div id="post-left">{{ form.post_title(placeholder="Title") }}
+      <span class="error"><font color="red"><i>
+        {% if form.post_title.errors %}
+          {% for error in form.post_title.errors %}
+            {{ error }}
+          {% endfor %}
+        {% endif %}
+      </span></i></font>
+    </div>
+   </p> 
+
+   <div id="post-center"> </div>
+  <div id="post-right"><b>Privacy: </b>
+    {{ form.post_privacy}}
+    <span class="error"><font color="red"><i>
+    {% if form.post_privacy.errors %}
+      {% for error in form.post_privacy.errors %}
+        {{ error }}
+      {% endfor %}
+    {% endif %}
+  </span></i></font>
+  </div>
+
+  <!-- Rich text field -->
+  <div id="post-left">
+      <div id="wysihtml5-toolbar" style="display: none;">
+      <p>
+        <b>Content: </b>
+        <a data-wysihtml5-command="bold"><img src="/static/images/bold.png"></a>
+        <a data-wysihtml5-command="italic"><img src="/static/images/italic.png"></a>
+        <a data-wysihtml5-command="underline"><img src="/static/images/underline.png"></a>
+        <a data-wysihtml5-command="createLink"><img src="/static/images/link.png"></a>
+          <div data-wysihtml5-dialog="createLink" style="display: none;">
+            <label>
+              Link:
+              <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+            </label>
+            <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+        </div>
+      </div>
+    </div>
+    <!-- Text box -->
+  <div id="post-center">
+    {{ form.post_content(cols="50", rows="10", id="wysihtml5-textarea")}}  
+    </p>
+  </div>
+
+  <!-- END Rich text field -->
+  <div id="post-center">
+    <input class="btn btn-sm btn-success" type="submit" value="Post" name"submit">
+    <input class="btn btn-sm btn-success" type="submit" value="Cancel" name="submit"></form>
+  </div>
+
+  <!-- Script for text -->
+  <script>
+  var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
+    toolbar:      "wysihtml5-toolbar", // id of toolbar element
+    parserRules:  wysihtml5ParserRules // defined in parser rules set 
+  });
+  </script>
+</div>
+  
+{% endblock %}

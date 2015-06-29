@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+
+<center><img src="/static/images/whatsnew.png"></center><br>
+
+<div class"container">
+	{% for post in posts.items %}
+	<div id="new-feed">
+		<p align="left">
+		<strong>Type:</strong> {{ post.post_type }} <br>
+		<strong>Title:</strong> <a href="{{ url_for('PostsFiles.showPost', postID=post.post_id) }}">{{ post.post_title }}</a> <br>
+		<strong>Date:</strong> {{ post.post_time }} <br> 
+		<strong>Posted by:</strong> {{ post.user_name }} <br>
+		</p>
+	</div>
+	{% endfor %}
+	<center>{{ pagination.links }}</center>
+</div>
+
+{% endblock %}

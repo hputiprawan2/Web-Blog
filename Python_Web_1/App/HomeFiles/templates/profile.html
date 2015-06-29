@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Font for head -->
+<link href='http://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
+
+<h1><center>Profile</center></h1>
+<br>
+<b>Username:</b> {{username}} 
+<br><br>
+<form action="{{ url_for('UsersFiles.changingPassword') }}">
+	<input class="btn btn-sm btn-success" type="submit" value="Change Password" name="submit">
+</form>
+{% endblock %}

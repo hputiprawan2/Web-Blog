@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Font for head -->
+<link href='http://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
+
+<h1>Register</h1>
+<br>
+<form class="form-signin" role="form" method="post" action="{{ url_for('UsersFiles.register') }}">
+  {{ form.csrf_token }}
+  <p>
+  	<b>Username: </b>
+    {{ form.user_name(placeholder="E-mail") }}
+    <span class="error"><font color="red"><i>
+      {% if form.user_name.errors %}
+        {% for error in form.user_name.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </font></i></span>
+  </p>
+  <b>Password: </b>
+  {{ form.user_password1(placeholder="password") }}
+    <span class="error"><font color="red"><i>
+      {% if form.user_password1.errors %}
+        {% for error in form.user_password1.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </font></i></span>
+  </p>
+  <p>
+  <b>Re-enter password: </b>
+  {{ form.user_password2(placeholder="re-enter password") }}
+    <span class="error"><font color="red"><i>
+      {% if form.user_password2.errors %}
+        {% for error in form.user_password2.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </font></i></span>
+  </p>
+
+  <p>
+  <input class="btn btn-sm btn-success" type="submit" value="Register" name"submit">
+  <input class="btn btn-sm btn-success" type="submit" value="Cancel" name="submit">
+</form>
+
+{% endblock %}

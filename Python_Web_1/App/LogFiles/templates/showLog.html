@@ -1,0 +1,43 @@
+{% extends "base_2.html" %}
+{% block content %}
+
+<div align="center">
+<TABLE BORDER="3" class="my-table">
+	<TR>
+		<TH COLSPAN="11">
+			<H3>Log Files</H3>
+		</TH>
+	</TR>
+	<TR>
+		<TH>Log ID</TH>
+		<TH>User ID</TH>
+		<TH>Username</TH>
+		<TH>IP Address</TH>
+		<TH>Action</TH>
+		<TH>Time</TH>
+		<TH>Post ID</TH>
+		<TH>Title</TH>
+		<TH>Type</TH>
+		<TH>Privacy</TH>
+		<TH>content</TH>
+	</TR>
+	{% for log in logs.items %}	
+	<TR>
+		<TD>{{log.log_id}}</TD>
+		<TD>{{log.log_userID}}</TD>
+		<TD>{{log.log_username}}</TD>
+		<TD>{{log.log_ipAddr}}</TD>
+		<TD>{{log.log_action}}</TD>
+		<TD>{{log.log_time}}</TD>
+		<TD>{{log.log_postID}}</TD>
+		<TD>{{log.log_postTitle}}</TD>
+		<TD>{{log.log_postType}}</TD>
+		<TD>{{log.log_postPrivacy}}</TD>
+		<TD>{{log.log_content}}</TD>
+	</TR>
+	{% endfor%}
+</TABLE>
+<center>{{ pagination.links }}</center>
+</div>
+
+{% endblock %}

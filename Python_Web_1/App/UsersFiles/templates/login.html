@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Font for head -->
+<link href='http://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
+<h2>Login</h2>
+   
+  <form action="{{ url_for('UsersFiles.login') }}" method="post" role="form">
+  {{ form.csrf_token }}
+     
+  <p align="center">
+    Username: 
+    {{ form.user_name(placeholder="username") }}
+    <span class="error"><font color="red"><i>
+      {% if form.user_name.errors %}
+        {% for error in form.user_name.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span></i></font>
+  </p>
+  <p align="center">
+  Password: 
+  {{ form.user_password(placeholder="password") }}
+    <span class="error"><font color="red"><i>
+      {% if form.user_password.errors %}
+        {% for error in form.user_password.errors %}
+          {{ error }}
+        {% endfor %}
+      {% endif %}
+    </span></i></font>
+  </p>
+  <div class="wrapper">  
+    <div class="button"><input class="btn btn-sm btn-success" type="submit" value="Login" name"submit">
+                        <input class="btn btn-sm btn-success" type="submit" value="Register" name="submit"></div>
+  </div>
+  </form>
+
+{% endblock %}

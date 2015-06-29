@@ -1,0 +1,122 @@
+/*
+	 CSS-Tricks Example
+	 by Chris Coyier
+	 http://css-tricks.com
+	 Link: http://www.freshdesignweb.com/css3-tutorials-examples.html
+*/
+
+*					{ margin: 0; padding: 0; }
+body				{ font: 15px arial, Serif;
+	 				  background: url(/static/images/bg2.jpg) repeat; 
+	 				}
+
+h1					{ font-family: 'Sigmar One', cursive;
+					  font: 36px; text-align: center; 
+					  color: #B404AE;
+					}
+h2					{ font-family: 'Sigmar One', cursive;
+					  font: 30px; text-align: center; 
+					  color: #B404AE;
+					}
+
+#page-wrap			{ width: 600px; margin: 40px auto;
+					  text-align: center;
+	 				  background: url(/static/images/bg2-blurry.jpg) repeat fixed;
+	 				  border: 10px solid white; padding: 30px;
+	 				  padding-bottom: 30px;
+					  min-height: 250px;
+					  -moz-border-radius: 30px; -webkit-border-radius: 30px; 
+					}
+#page-wrap2			{ width: 95%; margin: 50px auto;
+					  display: inline-table;
+	 				  background: url(/static/images/bg2-blurry.jpg) repeat fixed;
+	 				  border: 10px solid white; padding: 30px;
+	 				  padding-bottom: 30px;
+					  min-height: 250px;
+					  -moz-border-radius: 30px; -webkit-border-radius: 30px; 
+					}
+
+.wrapper {
+    text-align: center;
+    display: inline-block;
+}
+
+.button {
+    position: absolute:
+}
+
+.my-table {
+	width: 100%;
+	/*table-layout: fixed;*/
+	text-align: center;
+}
+
+.my-table th, td {
+	text-align: center;
+	white-space: auto; /*nowrap;*/
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.alignleft { float: left; }
+.alignright { float: right; }
+
+#add-post-block		{ 	width: 500px;
+						height: 400px;
+						border-style: dashed;
+						border-width: medium;
+						border-color: white;
+						margin-left: auto;
+    					margin-right: auto;
+						text-align: center;
+						-moz-border-radius: 30px; -webkit-border-radius: 30px;
+}			
+#post-left			{
+						display: inline;
+						width: 50%;
+						float: left;
+						text-align: left;
+						padding-left: 40px;
+						padding-top: 7px;
+}
+#post-right			{
+						display: inline;
+						width: 50%;
+						float: right;
+						text-align: left;
+						padding-left: 40px;
+						padding-top: 7px;
+}
+#post-center		{
+						display: inline;
+						width: 100%;
+						float: center;
+						text-align: left;
+}
+#new-feed			{
+						width: 450px;
+						height: 100px;
+						border-style: dashed;
+						border-width: medium;
+						border-color: white;
+						margin: 20px auto;
+						padding: 12px 30px;
+    					-moz-border-radius: 30px; -webkit-border-radius: 30px;
+}
+#new-feed-all			{
+						width: 450px;
+						height: 120px;
+						border-style: dashed;
+						border-width: medium;
+						border-color: white;
+						margin: 20px auto;
+						padding: 20px 20px;
+    					-moz-border-radius: 30px; -webkit-border-radius: 30px;
+}
+
+#show-comment		{ float: left; text-align: left;
+					  width: 520px; margin: 5px auto;
+	 				  border: 3px dashed #81BEF7; padding: 10px 20px;
+					  min-height: 10px;
+					  -moz-border-radius: 30px; -webkit-border-radius: 30px; 
+					}

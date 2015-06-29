@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<!-- Font for head -->
+<link href='http://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
+<h2><center><b>All Posts</b></center></h2><br>
+<!-- {{ pagination.info }} -->
+
+<!-- All posts -->
+<div class"container">
+	{% for post in posts.items %}
+	<div id="new-feed-all">
+		<p align="left">
+		<strong>Type:</strong> {{ post.post_type }} <br>
+		<strong>Title:</strong><a href="{{ url_for('PostsFiles.showPost', postID=post.post_id) }}"> 
+								{{ post.post_title }}</a> <br>
+		<strong>Date:</strong> {{ post.post_time }} <br> 
+		<strong>Privacy:</strong> {{ post.post_privacy }} <br> 
+		<strong>Posted by:</strong> {{ post.user_name }} <br>
+		</p>
+	</div>
+	{% endfor %}
+	{{ pagination.links }}
+
+{% endblock %}
+
+
+

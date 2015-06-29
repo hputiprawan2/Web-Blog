@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Font for head -->
+<link href='http://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
+<h2><b>Delete Posts</b></h2><br>
+{% for post in posts.items %}
+<p align="left">
+<strong><a href="{{ url_for('PostsFiles.confirmDelPost', delPost=post.post_id, who=who) }}">
+<img src="/static/images/delRed.png">
+</a>
+</strong>
+&nbsp;<strong>Type:</strong> {{ post.post_type }} <br>
+&emsp;<strong>Title:</strong> {{ post.post_title }}<br>
+&emsp;<strong>Date:</strong> {{ post.post_time }} <br> 
+&emsp;<strong>Privacy:</strong> {{ post.post_privacy }} <br>
+&emsp;<strong>Posted by:</strong> {{ post.user_name }} <br>
+<br>
+</p>
+{% endfor %}
+{{ pagination.links }}
+
+{% endblock %}
+
+

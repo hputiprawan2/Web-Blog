@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Font for head -->
+<link href='http://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
+
+{% for post in posts %}
+<form action="{{ url_for('PostsFiles.showPost', postID=post.post_id, page=page) }}" method="post" role="form">
+<!-- Edit -->
+{% if editable == True %}
+<p align="right">
+<a href="{{ url_for('PostsFiles.editPost', postID=post.post_id) }}" method='POST'>
+<img src="/static/images/edit.png"> Edit</a> 
+<a href="{{ url_for('PostsFiles.confirmDelPost', delPost=post.post_id, who=who) }}" method='POST'>
+<img src="/static/images/del.png"> Delete</a>
+</p>
+{% endif %}
+<!-- END Edit -->
+
+<h1><b><center>{{ post.post_title }}</center></b></h1>
+<h3><b><center>{{ post.post_type }}</center></b></h3>
+
+
+<strong><center>Date:</strong> {{ post.post_time }} </center><br>
+<br>
+<div align="left">
+{{ post.post_content|safe}}
+</div>
+{% endfor %}
+<br><br>
+
+<!-- COMMENTS -->
+<!-- Show comments -->
+<div class"container" align="left">
+<b>ALL COMMENTS: </b><br><br>
+	{% for comment in comments.items %}
+	<div id="show-comment">
+		<p class="alignleft"><b>{{ comment.user_name }}</b></p>
+		<p class="alignright">{{ comment.comment_time }}</p><br><br>
+		<p>{{ comment.comment_content|safe }}</p>
+	</div>
+	{% endfor %}
+</div>
+<center>{{ pagination.links }}</center>
+<!-- Comment box -->
+  	<div id="post-center">
+      <div id="wysihtml5-toolbar" style="display: none;">
+      <p>
+        <b>Comment: </b>
+        <a data-wysihtml5-command="bold"><img src="/static/images/bold.png"></a>
+        <a data-wysihtml5-command="italic"><img src="/static/images/italic.png"></a>
+        <a data-wysihtml5-command="underline"><img src="/static/images/underline.png"></a>
+        <a data-wysihtml5-command="createLink"><img src="/static/images/link.png"></a>
+          	<div data-wysihtml5-dialog="createLink" style="display: none;">
+	            <label>
+	              Link:
+	              <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+	            </label>
+	            <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+        	</div>
+      </div>
+    </div>
+    <!-- Text box -->
+	  <div id="post-center">
+	    {{ form.comment_content(cols="40", rows="10", id="wysihtml5-textarea")}}  
+	    </p>
+	  </div>
+
+  <!-- END Rich text field -->
+  <div id="post-center">
+    <input class="btn btn-sm btn-success" type="submit" value="Comment" name"submit"></form>
+  </div>
+
+  <!-- Script for text -->
+  <script>
+  var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
+    toolbar:      "wysihtml5-toolbar", // id of toolbar element
+    parserRules:  wysihtml5ParserRules // defined in parser rules set 
+  });
+  </script>
+
+{% endblock %}

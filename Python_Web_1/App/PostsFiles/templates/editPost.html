@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Font for head -->
+<link href='http://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
+<h2><b>Edit post</b></h2>
+
+{% for post in posts %}
+
+<form action="{{ url_for('PostsFiles.editPost', postID=post.post_id) }}" method="POST" role="form">
+	{{form.hidden_tag()}}
+	  <br>   
+	  <p>
+	    <b>Post Type: </b>
+	    {{ form.post_type(value=post.post_type) }}
+	    <span class="error"><font color="red"><i>
+	      {% if form.post_type.errors %}
+	        {% for error in form.post_type.errors %}
+	          {{ error }}
+	        {% endfor %}
+	      {% endif %}
+	    </span></i></font>
+	  </p>
+	  <p>
+	  <b>Post Title: </b>
+	  {{ form.post_title(value=post.post_title) }}
+	    <span class="error"><font color="red"><i>
+	      {% if form.post_title.errors %}
+	        {% for error in form.post_title.errors %}
+	          {{ error }}
+	        {% endfor %}
+	      {% endif %}
+	    </span></i></font>
+	  </p>
+	  <p>
+	  <b>Privacy: </b>
+	    {{ form.post_privacy}}
+	    <span class="error"><font color="red"><i>
+	    {% if form.post_privacy.errors %}
+	      {% for error in form.post_privacy.errors %}
+	        {{ error }}
+	      {% endfor %}
+	    {% endif %}
+	    </span></i></font>
+	  </p>
+
+<!-- Rich text field -->
+	<div id="wysihtml5-toolbar" style="display: none;">
+		<b>Content: </b>
+			<a data-wysihtml5-command="bold"><img src="/static/images/bold.png"></a>
+		    <a data-wysihtml5-command="italic"><img src="/static/images/italic.png"></a>
+		    <a data-wysihtml5-command="underline"><img src="/static/images/underline.png"></a>
+		    <a data-wysihtml5-command="createLink"><img src="/static/images/link.png"></a>
+			  <div data-wysihtml5-dialog="createLink" style="display: none;">
+			    <label>
+			      Link:
+			      <input data-wysihtml5-dialog-field="href" value="http://" class="text">
+			    </label>
+			    <a data-wysihtml5-dialog-action="save">OK</a> <a data-wysihtml5-dialog-action="cancel">Cancel</a>
+			  </div>
+	</div>
+    
+    <p><br>
+    <!-- {{ form.post_content(cols="50", rows="10", id="wysihtml5-textarea") }} -->
+    <textarea id="wysihtml5-textarea" cols="50" rows="10" name="textArea"> {{post.post_content}} </textarea>
+    </p>
+    
+    {% endfor %}
+
+    <p>
+    <input class="btn btn-sm btn-success" type="submit" value="Edit" name"submit">
+    <input class="btn btn-sm btn-success" type="submit" value="Cancel" name="submit"> 
+  	</p>
+  	</form>
+
+<script>
+var editor = new wysihtml5.Editor("wysihtml5-textarea", { // id of textarea element
+  toolbar:      "wysihtml5-toolbar", // id of toolbar element
+  parserRules:  wysihtml5ParserRules // defined in parser rules set 
+});
+</script>
+
+<!-- END Rich text field -->
+
+{% endblock %}

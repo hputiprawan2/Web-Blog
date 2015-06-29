@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <title>My Diary.com</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{{url_for('static', filename='favicon.ico')}}" />
+    <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/static/style.css" />
+    
+    <!-- Nav -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="static/navigation.css">
+    <style type="text/css">
+      .nav {
+        top: 25px;
+      }
+    </style>
+    <meta name="robots" content="noindex,follow" />
+    <!-- END Nav -->
+
+    <!-- Rich Text Form -->
+      <!-- wysihtml5 parser rules -->
+      <script src="/static/wysihtml5/parser_rules/advanced.js"></script>
+      <!-- Library -->
+      <script src="/static/wysihtml5/dist/wysihtml5-0.3.0.min.js"></script>
+    <!-- END Rich Text Form -->
+
+  </head>
+  <body background="/static/bg1.jpg">
+
+
+        <!-- Nav -->
+        {% if current_user.is_active() %}
+        <div class"container">
+          <ul class="nav">
+            <li><a href="/">Home</a></li>
+            <li><a href="/profile">Profile</a>
+              <ul>
+                <li><a href="/profile">Edit Profile</a></li>
+                <li><a href="{{ url_for('UsersFiles.changingPassword') }}">Change Password</a></li>
+              </ul>
+            </li>
+
+            {% if current_user.get_id() == '1' %}
+            <li><a href="#">Manage</a>
+              <ul>
+                <li><a href="#">Users</a>
+                  <ul>
+                    <li><a href="{{ url_for('UsersFiles.manageUsers') }}">Delete Users</a></li>
+                  </ul>
+                </li>
+            
+                <li><a href="#">Posts</a>
+                  <ul>
+                    <li><a href="{{ url_for('PostsFiles.showAllPosts') }}">Show All Posts</a></li>
+                    <li><a href="{{ url_for('PostsFiles.delPost') }}">Delete Post</a></li>
+                  </ul>
+                </li>
+
+                <li><a href="{{ url_for('LogViewFiles.showLog') }}">Log</a></li>
+              </ul>
+            </li>
+            {% endif %}
+
+            <li><a href="{{ url_for('PostsFiles.showAllMyPosts') }}">Blog</a>
+              <ul>
+                  <li><a href="{{ url_for('PostsFiles.addPost') }}">Add Post</a></li>
+                  <li><a href="{{ url_for('PostsFiles.showAllMyPosts') }}">Edit Post</a></li>
+                  <li><a href="{{ url_for('PostsFiles.delMyPost') }}">Delete Post</a></li>
+              </ul>
+            </li>
+
+            <li><a href="/about">About</a></li>
+            <li><a href="/logout">Logout</a></li>
+          </ul>
+        </div>
+        {% endif %}
+        <!-- END Nav -->
+
+
+    <!-- Body -->
+    <div id="page-wrap" class="container">
+      <!-- child template -->
+      {% block content %}
+      {% endblock %}
+
+      <!-- errors -->
+      <!-- { % xx % } Use like python expressions ex conditions, loops-->
+  		{% if error %}
+  			<!-- { { xx } } Use for variables, or the results show expression -->
+  			<!-- in this case use for the variable that we passed in from -->
+  			<!-- app.py return render_template('login.html', error = error) -->
+  			<br><center><p class="error"><strong>Error:</strong><font color="red">{{error}}</font></center></p>
+  		{% endif %}
+
+      <!-- messages -->
+      {% for message in get_flashed_messages() %}
+        <center>{{ message }}</center>
+      {% endfor %}
+    </div>
+    <!-- END Body -->
+
+
+  </body>
+</html>

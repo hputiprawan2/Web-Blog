@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Font for head -->
+<link href='http://fonts.googleapis.com/css?family=Sigmar+One' rel='stylesheet' type='text/css'>
+
+<h2><b>Delete Username {{ user.user_name }} ?</b></h2><br>
+ 
+
+<p>Are you sure, you want to delete <b>{{ user.user_id }} </b>: <b>{{ user.user_name }}</b>? 
+
+
+</p><br>
+<form action="{{ url_for('UsersFiles.delUser', delUserID=user.user_id) }}" method="post" >
+	<center><input class="btn btn-sm btn-success" type="submit" value="Yes" name"submit">
+	<input class="btn btn-sm btn-success" type="submit" value="Cancel" name="submit"></center>
+</form>
+
+{% endblock %}
